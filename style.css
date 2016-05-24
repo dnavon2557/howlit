@@ -1,0 +1,197 @@
+body {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        text-align: center;
+        padding: 0%;
+        margin: 0%;
+        background: #fff;
+        /*background: #fefefe;*/
+
+}
+
+h1 {
+        font-size: 5em;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 300;
+        color: #474747;
+        margin: 0%;
+}
+
+h1::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 20%;
+        background: #BBB;
+        margin: 0 auto;
+
+}
+
+h2 {
+        font-size: 2.25em;
+        font-weight: 500;
+        color: #808080;
+        margin: 1% 0%;
+
+}
+
+/*genre styles*/
+#genres {
+        width: 50%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+}
+#genres a {
+        text-decoration: none;
+        font-size: 1.5em;
+        font-weight: 200;
+        color: #808080;
+        transition: text-shadow 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+a:hover {
+        text-shadow: 0px 0px 1px #AAA;
+}
+a:hover:after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+        background: #DDD;
+        margin: 0 auto;
+}
+#genres a.active {
+        color: #FA1E30;
+}
+a.active:after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+        background: #FF7075;
+        margin: 0 auto;
+}
+/*button styles*/
+button {
+        font-weight: 600;
+        font-size: 2.25em;
+        color: #1398FF;
+        text-shadow: 3px 3px #AAA;
+        cursor: pointer;
+        /*color: #F5CF87;*/
+        /*text-shadow: 0px 5px #A65050;*/
+        /*box-shadow: 2px 3px #808080;*/
+        /*border: 1px solid #808080;*/
+        /*background-color: #C75C5C;*/
+        background: #FFF;
+        border: 4px solid #444;
+        box-shadow: none;
+        border-radius: 10px;
+        padding: 15px;
+}
+button:active {
+        color: rgba(0, 0, 0, 0);
+        text-shadow: 3px 3px #0388FF;
+        background: #eee; 
+}
+
+
+
+/*input slider style*/
+input[type=range] {
+        -webkit-appearance: none;
+        width: 80%;
+        background: transparent;
+        margin: 7% 0%;
+}
+
+/*webkit styles*/
+input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 8px;
+        animate: 0.2s;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #808080;
+}
+input[type=range]:hover::-webkit-slider-runnable-track {
+        background: #FA1E30;
+}
+
+input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background: none;
+        border: none;
+        height: 128px;
+        width: 128px;
+        cursor: pointer;
+        background-image: url("Flame.svg");
+        background-repeat: no-repeat;
+        margin-top: -64px;
+        /*background-position:center ;*/
+        background-size: contain;
+}
+
+
+/*firefox style*/
+input[type=range]::-moz-focus-outer {
+        border: 0;
+}
+input[type=range]:hover::-moz-range-track {
+        background: #FA1E30;
+}
+input[type=range]::-moz-range-track {
+        width: 100%;
+        height: 8px;
+        border-radius: 5px;
+        animate: 0.2s;
+        cursor: pointer;
+        background: #808080;
+}
+input[type=range]::-moz-range-thumb {
+        background: none;
+        border: none;
+        height: 128px;
+        width: 128px;
+        cursor: pointer;
+        background-image: url("Flame.svg");
+        background-repeat: no-repeat;
+        background-position:center;
+        background-size: contain;
+
+}
+
+/*IE styles*/
+input[type=range]::-ms-thumb {
+        background: none;
+        border: none;
+        height: 128px;
+        width: 128px;
+        cursor: pointer;
+        background-image: url("Flame.svg");
+        background-repeat: no-repeat;
+        background-position:center;
+        background-size: contain;
+}
+
+input[type=range]:focus {
+        outline: none;
+}
+
+input[type=range]::-ms-fill-upper {
+        background: #808080;
+}
+
+input[type=range]::-ms-fill-lower {
+        background: #808080;
+}
+input[type=range]::-ms-track {
+        width: 100%;
+        height: 8px;
+        animate: 0.2s;
+        cursor: pointer;
+
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+}
