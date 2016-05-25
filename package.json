@@ -1,0 +1,24 @@
+{
+  "name": "howlit",
+  "version": "1.0.0",
+  "description": "A webapp to generate a playlist based on the desired party affect",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnavon2557/howlit.git"
+  },
+  "author": "Daniel Navon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dnavon2557/howlit/issues"
+  },
+  "homepage": "https://github.com/dnavon2557/howlit#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {}
+}
