@@ -78,6 +78,7 @@ div#created:after {
 #footer {
         width: 20%;
 }
+/*modal styles*/
 .modal {
         position: fixed;
         top: -60%;
@@ -98,6 +99,20 @@ div#created:after {
 .modal h1:after {
         width: 40%;
         margin: 0;
+}
+
+.mclose::after {
+        content: "x";
+        font-size: 1em;
+        font-weight: 100;
+        cursor: pointer;
+}
+.mclose {
+        display: block;
+        position: relative;        
+        width: 0;
+        height: 0;
+        right: -97%;
 }
 
 p {

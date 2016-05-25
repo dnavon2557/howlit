@@ -20,11 +20,18 @@ function backdrop(target) {
         var cover = document.getElementById("cover");
         cover.style.display = "block";
         fadein(cover);
-        window.addEventListener("keydown", function(e) {
-                if (e.keyCode == 27) {
+        mcloses = document.getElementsByClassName("mclose");
+        Array.prototype.forEach.call(mcloses, function (mclose) {
+                mclose.onclick = function () {
                         fadeout(cover);
                         slideout(target);
                 }
+        });
+        window.addEventListener("keydown", function(e) {
+                if (e.keyCode == 27) {
+                                fadeout(cover);
+                                slideout(target);
+                        }
         }, false);
         cover.onclick = function() {
                 fadeout(cover);
