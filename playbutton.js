@@ -37,16 +37,14 @@ function getTitle(litness) {
 }
 
 function setCurrent() {
-        var genres = document.getElementsByTagName("a");
+        var genres = document.getElementsByClassName("genre");
         Array.prototype.forEach.call(genres, function(genre) {
                  genre.onclick = function () {
                         var active = document.getElementsByClassName("active")[0];
-                        if (this.innerHTML != "About" && this.innerHTML != "Contact") {
                                 if (active != null && active != undefined) {
-                                        active.className = "";
+                                        active.className = "genre";
                                 }
                                 this.className += " active";
-                        }
                 };
         });
                
@@ -78,7 +76,6 @@ function getPlaylist(genre, litness) {
         }
         var uri = uriFromObject(params);
         url +=uri+"bucket=id:spotify";
-        console.log(url);
 
         var info = document.getElementById("info");
         info.innerHTML = "Generating playlist...";
