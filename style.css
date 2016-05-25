@@ -33,6 +33,47 @@ h2 {
         margin: 1% 0%;
 
 }
+
+/*ribbon*/
+#created {
+        position: fixed;
+        top: 5%;
+        left: 0;
+        height: 60px;
+        width: 200px;
+        border-left: none;
+        background: #FA1E30;
+}
+div#created:after {
+        display: block;
+        position: absolute;
+        top: 0.0px;
+        left: 200px;
+        content: "";
+        height: 0px;
+        width : 0px;
+        border-top   : 30px solid #FA1E30;
+        border-bottom: 30px solid #FA1E30;
+        border-right : 30px solid transparent;
+
+}
+
+
+
+#created h1 {
+        font-size: 95%;
+        color: #fff;
+}
+#created h1:after {
+        display: none;
+}
+#created h1 a {
+        color: #fff;
+}
+#created h1 a:hover:after {
+        display: none;
+}
+
 /*footer styles*/
 #footer {
         width: 20%;
