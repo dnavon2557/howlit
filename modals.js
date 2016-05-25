@@ -20,11 +20,20 @@ function backdrop(target) {
         var cover = document.getElementById("cover");
         cover.style.display = "block";
         fadein(cover);
+        window.addEventListener("keydown", function(e) {
+                if (e.keyCode == 27) {
+                        fadeout(cover);
+                        slideout(target);
+                }
+        }, false);
         cover.onclick = function() {
                 fadeout(cover);
                 slideout(target);
         }
 }
+
+
+/*removes a modal from view and fades out backdrop*/
 
 /*Transitions the cover to fadeout*/
 function fadeout(cover) {
