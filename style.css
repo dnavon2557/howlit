@@ -37,7 +37,7 @@ h2 {
 /*genre styles*/
 #genres {
         width: 50%;
-        margin: 0 auto;
+        margin: 1% auto;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
