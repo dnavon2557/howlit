@@ -1,6 +1,12 @@
+//Set global vars for api requests
 var APIKEY = "MTZ7G9GPEB6G3QDOL";
 var echoNest = "http://developer.echonest.com/"
 var apiMethod = "api/v4/playlist/static?"
+
+
+/* Returns the html for a iframe containing a songs from playlist (an array 
+ * of songs) and the given title
+ */
 function getPlayButtonFor(title, playlist) {
         var iframe = '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:PREFEREDTITLE:TRACKS&theme=white" width="640" height="520" frameborder="0" allowtransparency="true"></iframe>';
         var trackids = [];
@@ -14,10 +20,14 @@ function getPlayButtonFor(title, playlist) {
         return iframe;
 }
 
+/* Interprets a foreign_id from a song and returns the spotify Id */
 function fidToSpid(fid) {
         var fields = fid.split(':');
         return fields[fields.length - 1];
 }
+
+
+/*Returns a title based on the litness level of the litometer*/
 function getTitle(litness) {
         if (litness >= 7/8) {
                 return "Turnt AF";
@@ -36,7 +46,8 @@ function getTitle(litness) {
         }
 }
 
-function setCurrent() {
+/*Sets the class of a clicked genre to "active" and resets the current active*/
+function setActive() {
         var genres = document.getElementsByClassName("genre");
         Array.prototype.forEach.call(genres, function(genre) {
                  genre.onclick = function () {
@@ -51,6 +62,11 @@ function setCurrent() {
 
 }
 
+
+/*Returns the URI string for an api request from an object containing paramters
+ *and arguements. None of the paramters can be repeated and arguments are
+ *assumed to be numbers or strings
+ */
 function uriFromObject(object) {
         var res = "";
         for (key in object) {
@@ -59,6 +75,10 @@ function uriFromObject(object) {
         return res;
 }
 
+/*Gets the playlist data from echonest based on the litness level and the
+ *chosen genre. Also calls the getPlayButton and getTitle methods to get and
+ *set the playbutton and title in the html doc.
+ */
 function getPlaylist(genre, litness) {
         var url = echoNest + apiMethod;
         var title = getTitle(litness);
@@ -99,7 +119,7 @@ function getPlaylist(genre, litness) {
 
 }
 
-
+/*Watches the modal links for a click and acts appropriately if clicked*/
 function watchModals() {
         centerModals();
         var modal_links = document.getElementsByClassName("modal_link");
@@ -113,6 +133,9 @@ function watchModals() {
         });
 }
 
+/*Sets a backdrop using the html elem with id="cover" fades out if the cover
+ *is clicked.
+ */
 function backdrop(target) {
         var cover = document.getElementById("cover");
         cover.style.display = "block";
@@ -123,6 +146,7 @@ function backdrop(target) {
         }
 }
 
+/*Transitions the cover to fadeout*/
 function fadeout(cover) {
         var opacity = 0.6;
         opacity = parseFloat(cover.style.opacity);
@@ -137,6 +161,8 @@ function fadeout(cover) {
                         cover.style.display= "none";
         }
 }
+
+/*Slides out a modal from the window*/
 function slideout(modal) {
         var top = 5;
         if (modal.style.top != "") {
@@ -157,6 +183,7 @@ function slideout(modal) {
         } 
 }
 
+/*Ensures that modals arrive horizontally centered on screen*/
 function centerModals() {
         var modals = document.getElementsByClassName("modal");
         Array.prototype.forEach.call(modals, function (modal) {
@@ -166,7 +193,7 @@ function centerModals() {
         });
 }
 
-
+/*Slides in a modal from above the window*/
 function slidein(modal) {
         var top = -60;
         if (modal.style.top != "") {
@@ -187,24 +214,22 @@ function slidein(modal) {
         }
 }
 
-function fadein(modal) {
+/*fades in the cover with animation*/
+function fadein(cover) {
         var opacity = 0;
-        if (modal.style.opacity != "") {
-                opacity = parseFloat(modal.style.opacity);
+        if (cover.style.opacity != "") {
+                opacity = parseFloat(cover.style.opacity);
         }
         opacity = opacity + 0.025;
-        modal.style.opacity = opacity;
+        cover.style.opacity = opacity;
         if (opacity < 0.6) {
                 window.requestAnimationFrame(function () {
-                        fadein(modal);
+                        fadein(cover);
                 });
         }
 }
 
-window.onload = function () {
-        setCurrent();
-        watchModals();
-};
+/*Actives the fetch and excute cycle for the play button*/
 function turnup() {
         var genre = document.getElementsByClassName("active")[0].innerHTML;
         genre = genre.toLowerCase();
@@ -212,4 +237,11 @@ function turnup() {
         var litness = litometer.value;
         litness = litness - (litness % 0.1);
         getPlaylist(genre, litness);
+};
+
+
+/*Calls functions for watch once DOM is loaded*/
+window.onload = function () {
+        setActive();
+        watchModals();
 };
