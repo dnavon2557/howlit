@@ -111,6 +111,10 @@ function getPlaylist(genre, litness) {
                                 document.getElementById("info").innerHTML = title;
 
 
+                        } else {
+                            var message = JSON.parse(http.responseText).response.status.message;
+                            document.getElementById("info").innerHTML = message;
+
                         }
                 }
         };
