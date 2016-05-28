@@ -105,7 +105,6 @@ function getPlaylist(genre, litness) {
                 if (http.readyState === 4) {
                         if (http.status === 200) {
                                 var playlist = JSON.parse(http.responseText).response.songs;
-                                console.log(playlist);
                                 var playButton = getPlayButtonFor(title, playlist);
                                 var span = document.getElementsByTagName("span")[0];
                                 span.innerHTML = playButton;
@@ -122,7 +121,15 @@ function getPlaylist(genre, litness) {
 
 /*Actives the fetch and excute cycle for the play button*/
 function turnup() {
-        var genre = document.getElementsByClassName("active")[0].innerHTML;
+        var genre = "";
+        genre =  document.getElementById("search").value;
+        if (genre == "" || genre == null || genre == undefined) {
+            var active = document.getElementsByClassName("active");
+            if (active.length == 0) {
+                return;
+            }
+            genre = active[0].innerHTML;
+        }
         genre = genre.toLowerCase();
         var litometer = document.getElementById("litometer");
         var litness = litometer.value;

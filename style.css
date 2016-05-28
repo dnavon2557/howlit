@@ -34,6 +34,13 @@ h2 {
 
 }
 
+#search {
+        border-radius: 5px;
+        box-shadow: none;
+        border: 1px solid #a8a8a8;
+        padding: 1%;
+}
+
 /*ribbon*/
 #created {
         position: fixed;
@@ -135,7 +142,7 @@ p {
 
 /*genre styles*/
 #genres {
-        width: 50%;
+        width: 70%;
 }
 div#genres, div#footer { 
         margin: 1% auto;
@@ -146,30 +153,40 @@ div#genres, div#footer {
 a {
         text-decoration: none;
         font-size: 1.5em;
-        font-weight: 200;
         color: #808080;
         transition: text-shadow 0.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
-a:hover {
-        text-shadow: 0px 0px 1px #AAA;
-}
-a:hover:after {
+a::after {
         content: '';
         display: block;
         height: 1px;
         width: 100%;
+        opacity: 0;
+        margin: 0 auto;
+        transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+a:hover {
+        /*text-shadow: 0px 0px 1px #AAA;*/
+}
+a:hover::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+        opacity: 1;
         background: #DDD;
         margin: 0 auto;
 }
 a.active {
         color: #FA1E30;
 }
-a.active:after {
+a.active::after {
         content: '';
         display: block;
         height: 1px;
         width: 100%;
         background: #FF7075;
+        opacity: 1;
         margin: 0 auto;
 }
 /*button styles*/
