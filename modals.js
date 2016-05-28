@@ -7,6 +7,7 @@ function watchModals() {
                 link.onclick = function () {
                         var target_id = this.dataset.target;
                         var target = document.getElementById(target_id);
+                        target.style.display = "inherit";
                         backdrop(target); 
                         slidein(target);
                 };
@@ -86,6 +87,7 @@ function centerModals() {
                 var mwidth = modal.getBoundingClientRect().width;
                 var wwidth = window.innerWidth;
                 modal.style.left = (wwidth/2-mwidth/2).toString() + "px";
+                modal.style.display = "none";
         });
 }
 
