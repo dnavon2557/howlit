@@ -29,21 +29,25 @@ function fidToSpid(fid) {
 
 /*Returns a title based on the litness level of the litometer*/
 function getTitle(litness) {
-        if (litness >= 7/8) {
-                return "Turnt AF";
-        } else if (litness >= 3/4) {
-                return "Pretty Lit";
-        } else if (litness >= 5/8) {
-                return "Definitely Lit";
-        } else if (litness >= 1/2) {
-                return "Low Key Lit";
-        } else if (litness >= 3/8) {
-                return "Low Key";
-        } else if (litness >= 1/4) {
-                return "J Chillin";
-        } else if (litness >= 0) {
-                return "Not Lit";
-        }
+    litness = Math.ceil(litness * 8);
+    switch (litness) {
+        case 8:
+            return "Turnt AF";
+        case 7:
+            return "Pretty Lit";
+        case 6:
+            return "Definitely Lit";
+        case 5:
+            return "Low Key Lit";
+        case 4:
+            return "Low Key";
+        case 3:
+            return "J Chillin";
+        case 2:
+            return "Not Lit";
+        case 1:
+            return "Sadboy";
+    }
 }
 
 /*Sets the class of a clicked genre to "active" and resets the current active*/
@@ -75,6 +79,32 @@ function uriFromObject(object) {
         return res;
 }
 
+function getHottestArtist(genre) {
+        var url = echoNest + "api/v4/artist/top_hottt?"
+        var params = {
+            api_key: APIKEY,
+            results: 20,
+            genre: genre,
+            bucket: "terms",
+            limit: true
+        };
+        var uri = uriFromObject(params);
+        url +=uri+"bucket=id:spotify";
+
+        var http = new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.onreadystatechange = function () {
+                if (http.readyState === 4) {
+                        if (http.status === 200) {
+                            console.log(http.responseText);
+
+                        } 
+                }
+        };
+        http.send(null);
+
+}
+
 /*Gets the playlist data from echonest based on the litness level and the
  *chosen genre. Also calls the getPlayButton and getTitle methods to get and
  *set the playbutton and title in the html doc.
@@ -82,16 +112,17 @@ function uriFromObject(object) {
 function getPlaylist(genre, litness) {
         var url = echoNest + apiMethod;
         var title = getTitle(litness);
-        var tempo = 80 + (100 * litness);
+        var energy = litness * 0.5;
         var params = {
                 api_key: APIKEY,
                 type:"genre-radio",
-                results:"50",
+                results:"25",
                 bucket: "tracks",
                 limit:"true",
-                genre:genre,
-                // min_tempo:tempo,
-                target_energy:litness
+                variety: 1,
+                genre: genre,
+                min_danceability: energy / 2,
+                min_energy: energy
 
         }
         var uri = uriFromObject(params);
@@ -99,6 +130,7 @@ function getPlaylist(genre, litness) {
 
         var info = document.getElementById("info");
         info.innerHTML = "Generating playlist...";
+        console.log(url);
         var http = new XMLHttpRequest();
         http.open("GET", url, true);
         http.onreadystatechange = function () {
@@ -127,17 +159,22 @@ function getPlaylist(genre, litness) {
 function turnup() {
         var genre = "";
         genre =  document.getElementById("search").value;
+        genre = genre.trim();
         if (genre == "" || genre == null || genre == undefined) {
             var active = document.getElementsByClassName("active");
             if (active.length == 0) {
                 return;
             }
             genre = active[0].innerHTML;
+            if (genre == "Rap") {
+                genre = "Pop Rap";
+            }
         }
         genre = genre.toLowerCase();
         var litometer = document.getElementById("litometer");
         var litness = litometer.value;
-        litness = litness - (litness % 0.1);
+        litness = litness;
+        // getHottestArtist(genre);
         getPlaylist(genre, litness);
 };
 
