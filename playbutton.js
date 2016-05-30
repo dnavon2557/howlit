@@ -178,8 +178,4 @@ function turnup() {
         getPlaylist(genre, litness);
 };
 
-
-/*Calls functions for watch once DOM is loaded*/
-window.onload = function () {
-        setActive();
-};
+window.addEventListener("load", setActive);

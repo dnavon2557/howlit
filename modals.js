@@ -47,7 +47,7 @@ function backdrop(target) {
 function fadeout(cover) {
         var opacity = 0.6;
         opacity = parseFloat(cover.style.opacity);
-        opacity = opacity - 0.015;
+        opacity = opacity - 0.035;
         cover.style.opacity = opacity;
         if (opacity > 0.000) {
                 window.requestAnimationFrame(function () {
@@ -66,13 +66,13 @@ function slideout(modal) {
                 top = parseFloat(modal.style.top.slice(0, -1));
         }
         if (top > -10) {
-                top -= 1.0;
+                top -= 2.0;
         }
         if (top > -25) {
                 top -= 2.0;
         }
         if (top > -60) {
-                top -= 2.0;
+                top -= 5.0;
                 modal.style.top = top.toString() + "%";
                 window.requestAnimationFrame(function () {
                         slideout(modal);
@@ -101,10 +101,10 @@ function slidein(modal) {
                 top += 2;
         }
         if (top < -25) {
-                top += 2;
+                top += 3;
         }
         if (top < 5) {
-                top += 2.0;
+                top += 5.0;
                 modal.style.top = top.toString() + "%";
                 window.requestAnimationFrame(function () {
                         slidein(modal);
@@ -118,7 +118,7 @@ function fadein(cover) {
         if (cover.style.opacity != "") {
                 opacity = parseFloat(cover.style.opacity);
         }
-        opacity = opacity + 0.025;
+        opacity = opacity + 0.035;
         cover.style.opacity = opacity;
         if (opacity < 0.6) {
                 window.requestAnimationFrame(function () {
@@ -127,7 +127,4 @@ function fadein(cover) {
         }
 }
 /*Calls functions for watch once DOM is loaded*/
-window.onload = function () {
-        setActive(); //in playbutton module
-        watchModals();
-};
+window.addEventListener("load", watchModals);
