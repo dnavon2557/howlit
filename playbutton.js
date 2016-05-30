@@ -130,7 +130,6 @@ function getPlaylist(genre, litness) {
 
         var info = document.getElementById("info");
         info.innerHTML = "Generating playlist...";
-        console.log(url);
         var http = new XMLHttpRequest();
         http.open("GET", url, true);
         http.onreadystatechange = function () {
@@ -174,7 +173,6 @@ function turnup() {
         var litometer = document.getElementById("litometer");
         var litness = litometer.value;
         litness = litness;
-        // getHottestArtist(genre);
         getPlaylist(genre, litness);
 };
 

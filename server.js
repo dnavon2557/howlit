@@ -21,7 +21,6 @@ app.use(express.static(__dirname));
 });
 */
 app.get("/callback", function (req, res) {
-        var scopes = 'playlist-read-private playlist-modiffy-private';
         if (req.query.code == undefined) {
                 console.log(req.query.error);
         } else {
@@ -31,7 +30,6 @@ app.get("/callback", function (req, res) {
                                 code : req.query.code,
                                 client_id: client_id,
                                 client_secret: client_secret,
-                                scopes: scopes,
                                 redirect_uri: "http://localhost:5000/callback",
                                 grant_type: "authorization_code"
 
@@ -51,7 +49,7 @@ app.get("/callback", function (req, res) {
 app.get("/refresh_token", function (req, res) {
         var refresh_token = req.query.refresh_token;
         var params = {
-                url : "https://acounts.spotify.com/api/token",
+                url : "https://accounts.spotify.com/api/token",
                 form : {
                         grant_type : "refresh_token",
                         refresh_token : refresh_token,
@@ -61,8 +59,10 @@ app.get("/refresh_token", function (req, res) {
                 json: true
         };
         request.post(params, function(error, response, body) {
-                if (!error && reponse.statusCode == 200) {
-                        res.send({access_token: body.access_token});
+                if (!error && response.statusCode == 200) {
+                        res.send({"access_token": body.access_token});
+                } else if (error) {
+                        console.log(error);
                 }
         });
 });
