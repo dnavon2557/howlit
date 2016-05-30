@@ -140,6 +140,21 @@ p {
         z-index: 0;
 }
 
+
+
+#connect2spotify {
+        font-size: 1.0em;
+        font-weight: 200;
+        color: #BBB;
+        transition: text-shadow 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+#connect2spotify::after {
+        width: 10%;
+}
+#connect2spotify:hover {
+        text-shadow: 0px 0px 2px #00D670;
+}
+
 /*genre styles*/
 #genres {
         width: 70%;
@@ -154,7 +169,6 @@ a {
         text-decoration: none;
         font-size: 1.5em;
         color: #808080;
-        transition: text-shadow 0.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 a::after {
         content: '';
@@ -163,10 +177,7 @@ a::after {
         width: 100%;
         opacity: 0;
         margin: 0 auto;
-        transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-}
-a:hover {
-        /*text-shadow: 0px 0px 1px #AAA;*/
+        transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 a:hover::after {
         content: '';
