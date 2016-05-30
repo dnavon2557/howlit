@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <script type="text/javascript" src="playbutton.js"></script>
         <script type="text/javascript" src="modals.js"></script>
+        <script type="text/javascript" src="spotifyweb.js"></script>
 </head>
 <body>
         <div id="created">
@@ -27,6 +28,7 @@
                 <a href="#" class="genre">Country</a>
                 <input type="text" placeholder="Search" id="search">
         </div>
+        <a href="#" id="connect2spotify" onclick="getAuthorization()">Connect to Spotify for a better experience...</a>
         <span></span>
         <input type="range" min="0" max="1" step="0.001" value="0.5" id="litometer"> <br>
         <button onclick="turnup()">Turn Up</button>
