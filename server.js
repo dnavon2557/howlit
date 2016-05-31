@@ -35,11 +35,11 @@ app.get("/callback", function (req, res) {
                 var params = {
                         url : "https://accounts.spotify.com/api/token",
                         form : {
-                                code : req.query.code,
-                                client_id: client_id,
-                                client_secret: client_secret,
-                                redirect_uri: "http://localhost:5000/callback",
-                                grant_type: "authorization_code"
+                                "code ": req.query.code,
+                                "client_id": client_id,
+                                "client_secret": client_secret,
+                                "redirect_uri": "http://localhost:5000/callback",
+                                "grant_type": "authorization_code"
 
                         },
                         json : true
@@ -59,10 +59,10 @@ app.get("/refresh_token", function (req, res) {
         var params = {
                 url : "https://accounts.spotify.com/api/token",
                 form : {
-                        grant_type : "refresh_token",
-                        refresh_token : refresh_token,
-                        client_secret : client_secret,
-                        client_id : client_id
+                        "grant_type ": "refresh_token",
+                        "refresh_token ": refresh_token,
+                        "client_secret ": client_secret,
+                        "client_id ": client_id
                 },
                 json: true
         };
