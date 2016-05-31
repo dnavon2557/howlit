@@ -3,6 +3,7 @@
 <head>
         <title>How Lit?</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="common.js"></script>
         <script type="text/javascript" src="playbutton.js"></script>
         <script type="text/javascript" src="modals.js"></script>
         <script type="text/javascript" src="spotifyweb.js"></script>
@@ -18,6 +19,8 @@
         <div id="cover"></div>
         <h1>How Lit?</h1>
         <h2 id="info"></h2>
+        <img src="loading.gif" style="display:none" id="loading">
+        <button id="play">Play on Spotify</button>
         <div id="genres">
                 <a href="#" class="genre" id="Rap">Rap</a>
                 <a href="#" class="genre" id="Indie-Pop">Indie-Pop</a>
@@ -28,10 +31,10 @@
                 <a href="#" class="genre" id="Country">Country</a>
                 <input type="text" placeholder="Search" id="search">
         </div>
-        <a href="#" id="connect2spotify" onclick="getAuthorization()">Connect to Spotify for a better experience...</a>
+        <a href="/login" id="connect2spotify">Connect to Spotify for a better experience...</a>
         <span></span>
         <input type="range" min="0" max="1" step="0.001" value="0.5" id="litometer"> <br>
-        <button onclick="turnup()">Turn Up</button>
+        <button onclick="turnup()" id="submit">Turn Up</button>
         <div id="footer">
                 <a href="#" data-target="about" class="modal_link">About</a>
                 <a href="#" data-target="contact" class="modal_link">Contact</a>
@@ -39,7 +42,7 @@
         <div id="about" class="modal">
                 <span class="mclose"></span>
                 <h1>About</h1>
-                <p>How Lit is a web app that lets a user generate a playlist based on a genre of music and how "lit" they want the playlist to be. The concept was originally concieved and implemented by Daniel Navon and Lauren Dierker at the Tufts Polyhack 2015. The current version of How Lit was rewritten from scratch by Daniel Navon.</p>
+                <p>How Lit is a web app that lets a user generate a playlist based on a genre of music and how "lit" they want the playlist to be. The concept was originally concieved and implemented by Daniel Navon and Lauren Dierker at the Tufts Polyhack 2015. The current version of How Lit was rewritten from scratch by Daniel Navon. How Lit is powered by the Spotify Web API and the EchoNest API</p>
         </div>
         <div id="contact" class="modal">
                 <span class="mclose"></span>

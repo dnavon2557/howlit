@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var request = require('request');
 var validator = require('validator'); 
-
+var common = require('./common');
 
 var client_id = "db2059a806b7465fb231d894936978c3";
 var client_secret = "486e6c00156a4194bd4aab210d57a786";
@@ -11,15 +11,23 @@ var client_secret = "486e6c00156a4194bd4aab210d57a786";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.use(express.static(__dirname));
 
-/*app.get("/", function (req, res) {
-        if (req.query.access_token && req.query.refresh_token) {
-                res.sendFile(__dirname + '/logged.html');
-        }
+
+app.get("/login", function (req, res) {
+        var scopes = 'playlist-read-private playlist-modify-private playlist-modify-public playlist-read-collaborative';
+        var params = {
+                "client_id": client_id,
+                "response_type": "code",
+                "scope": scopes,
+                "redirect_uri": location.host + "/callback"
+        };
+        var uri = common.uriFromObject(params);
+        var url =  "https://accounts.spotify.com/authorize/?"+uri;
+        url = url.slice(0, url.length - 1);
+        res.redirect(url);
 });
-*/
+
 app.get("/callback", function (req, res) {
         if (req.query.code == undefined) {
                 console.log(req.query.error);

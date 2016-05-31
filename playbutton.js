@@ -67,17 +67,6 @@ function setActive() {
 }
 
 
-/*Returns the URI string for an api request from an object containing paramters
- *and arguements. None of the paramters can be repeated and arguments are
- *assumed to be numbers or strings
- */
-function uriFromObject(object) {
-        var res = "";
-        for (key in object) {
-                res += encodeURIComponent(key) +"="+ encodeURIComponent(object[key]) + "&";
-        }
-        return res;
-}
 
 function getHottestArtist(genre) {
         var url = echoNest + "api/v4/artist/top_hottt?"
