@@ -20,7 +20,7 @@ app.get("/login", function (req, res) {
                 "client_id": client_id,
                 "response_type": "code",
                 "scope": scopes,
-                "redirect_uri": location.host + "/callback"
+                "redirect_uri": req.hostname + "/callback"
         };
         var uri = common.uriFromObject(params);
         var url =  "https://accounts.spotify.com/authorize/?"+uri;
@@ -38,7 +38,7 @@ app.get("/callback", function (req, res) {
                                 "code ": req.query.code,
                                 "client_id": client_id,
                                 "client_secret": client_secret,
-                                "redirect_uri": location.host + "/callback",
+                                "redirect_uri": req.hostname + "/callback",
                                 "grant_type": "authorization_code"
 
                         },
