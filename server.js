@@ -26,7 +26,7 @@ app.get("/login", function (req, res) {
         var uri = common.uriFromObject(params);
         var url =  "https://accounts.spotify.com/authorize/?"+uri;
         url = url.slice(0, url.length - 1);
-        res.redirect(url);
+        return res.redirect(url);
 });
 
 app.get("/callback", function (req, res) {
@@ -36,7 +36,7 @@ app.get("/callback", function (req, res) {
                 var params = {
                         url : "https://accounts.spotify.com/api/token",
                         form : {
-                                "code ": req.query.code,
+                                "code": req.query.code,
                                 "client_id": client_id,
                                 "client_secret": client_secret,
                                 "redirect_uri": redirect_uri,
@@ -46,11 +46,13 @@ app.get("/callback", function (req, res) {
                         json : true
                 };
                 request.post(params,function(error, response, body) {
-                        if (!error && response.statusCode === 200) {
+                        if (!error && response.statusCode == 200) {
                                 var access_token = body.access_token;
                                 var refresh_token = body.refresh_token;
                                 res.redirect('/#' +access_token+ '&' +refresh_token);
-                        }
+                        } else {
+				console.log(error, response.statusCode);
+			}
                 });
         }
 });
