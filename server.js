@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname));
 
+var redirect_uri = encodeURI("http://" + "howlit.me" + "/callback");
 
 app.get("/login", function (req, res) {
         var scopes = 'playlist-read-private playlist-modify-private playlist-modify-public playlist-read-collaborative';
@@ -20,7 +21,7 @@ app.get("/login", function (req, res) {
                 "client_id": client_id,
                 "response_type": "code",
                 "scope": scopes,
-                "redirect_uri": req.hostname + "/callback"
+                "redirect_uri": redirect_uri
         };
         var uri = common.uriFromObject(params);
         var url =  "https://accounts.spotify.com/authorize/?"+uri;
@@ -38,7 +39,7 @@ app.get("/callback", function (req, res) {
                                 "code ": req.query.code,
                                 "client_id": client_id,
                                 "client_secret": client_secret,
-                                "redirect_uri": req.hostname + "/callback",
+                                "redirect_uri": redirect_uri,
                                 "grant_type": "authorization_code"
 
                         },
